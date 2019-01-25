@@ -4,12 +4,24 @@ import "./App.css";
 import SearchBar from "./SearchBar/SearchBar";
 import Header from "./Header/Header";
 import search from "../lib/Search";
+import ResultsArea from "./ResultsArea/ResultsArea";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      results: { matches: [] }
+    };
+
+    this.handleSearch = this.handleSearch.bind(this);
+  }
+
   handleSearch(event) {
     event.preventDefault();
     const result = search(event.target.value);
-    console.log(result);
+    this.setState({
+      results: result
+    });
   }
 
   render() {
@@ -17,6 +29,7 @@ class App extends Component {
       <div className="App">
         <Header />
         <SearchBar handleSearch={this.handleSearch} />
+        <ResultsArea results={this.state.results} />
       </div>
     );
   }
