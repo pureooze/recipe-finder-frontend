@@ -9,6 +9,30 @@ function search(searchString) {
         ingredients: ["chicken", "lemon", "garlic"],
         desc:
           "This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like."
+      },
+      {
+        name: "Thai Basil Beef",
+        img:
+          "https://www.closetcooking.com/wp-content/uploads/2016/09/ThaiBasilBeef8006722.jpg",
+        ingredients: ["beef", "basil", "lime"],
+        desc:
+          "A quick, easy and tasty Thai style beef with plenty of fresh basil!"
+      },
+      {
+        name: "Thai Peanut Chicken Noodle Soup",
+        img:
+          "https://www.closetcooking.com/wp-content/uploads/2014/01/Thai-Peanut-Chicken-Noodle-Soup-800-0995.jpg",
+        ingredients: ["beef", "basil", "lime"],
+        desc:
+          "A quick, easy and tasty Thai style beef with plenty of fresh basil!"
+      },
+      {
+        name: "Thai Peanut Chicken Noodle Soup",
+        img:
+          "https://www.closetcooking.com/wp-content/uploads/2014/01/Thai-Peanut-Chicken-Noodle-Soup-800-0995.jpg",
+        ingredients: ["beef", "basil", "lime"],
+        desc:
+          "A quick, easy and tasty Thai style beef with plenty of fresh basil!"
       }
     ]
   };
