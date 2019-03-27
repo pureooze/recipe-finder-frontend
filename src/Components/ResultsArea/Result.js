@@ -8,6 +8,7 @@ import Collapse from "@material-ui/core/Collapse";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { Link } from "@material-ui/icons";
 
 class Result extends Component {
   constructor(props) {
@@ -16,22 +17,48 @@ class Result extends Component {
     this.state = {
       expanded: false
     };
+
+    this.handleExpandClick = this.handleExpandClick.bind(this);
+    this.handleLinkClick = this.handleLinkClick.bind(this);
+  }
+
+  handleLinkClick(event) {
+    if (window.open) {
+      window.open(this.props.result.url, "_blank");
+    }
+  }
+
+  handleExpandClick(event) {
+    event.preventDefault();
+    this.setState({
+      expanded: !this.state.expanded
+    });
   }
 
   render() {
     return (
-      <Card style={{ maxWidth: 400 }}>
+      <Card style={{ width: 300 }}>
         <CardHeader
-          title={this.props.result.name}
-          subheader="September 14, 2016"
+          title={this.props.result.label}
+          subheader={"Servings: " + this.props.result.yield}
         />
         <CardMedia
-          image={this.props.result.img}
-          title="Paella dish"
+          image={this.props.result.image}
+          title={this.props.result.label}
           style={{ height: 0, paddingTop: "56.25%" }}
         />
         <CardContent>
-          <Typography component="p">{this.props.result.desc}</Typography>
+          <Typography component="ul">
+            {this.props.result.ingredientLines.map((ingredient, index) => {
+              if (index <= 4 || this.state.expanded) {
+                return (
+                  <Typography component="li">
+                    <Typography component="p">{ingredient}</Typography>
+                  </Typography>
+                );
+              }
+            })}
+          </Typography>
         </CardContent>
         <CardActions disableActionSpacing>
           <IconButton
@@ -41,11 +68,14 @@ class Result extends Component {
           >
             <ExpandMoreIcon />
           </IconButton>
+          <IconButton onClick={this.handleLinkClick} aria-label="Go to website">
+            <Link />
+          </IconButton>
         </CardActions>
         <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
           <CardContent>
             <Typography paragraph>Method:</Typography>
-            <Typography paragraph>
+            <Typography>
               Heat 1/2 cup of the broth in a pot until simmering, add saffron
               and set aside for 10 minutes.
             </Typography>

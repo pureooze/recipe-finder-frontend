@@ -23,6 +23,8 @@ class SearchBar extends Component {
           <InputBase
             placeholder="Search Ingredients"
             style={{ marginLeft: 8, flex: 1, color: "white" }}
+            value={this.props.searchTerm}
+            onChange={this.props.handleInputChange}
           />
           <IconButton
             aria-label="Search"
