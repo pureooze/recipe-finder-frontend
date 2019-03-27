@@ -3,17 +3,13 @@ let settings = {};
 export function search(searchString) {
   const queryString = Object.keys(settings)
     .map(key => {
-      let value = "";
-      console.log("Key: ", key, settings[key].length);
-      if (key === "health" && settings[key].length > 0) {
-        for (const v of settings[key]) {
-          value += v;
-        }
-      } else if (key === "inventory") {
-        value = settings[key].join(",");
-      }
-
-      console.log("V: ", value);
+      // if (key === "health" && settings[key].length > 0) {
+      //   for (const v of settings[key]) {
+      //     value += v;
+      //   }
+      // } else if (key === "inventory") {
+      //   value = settings[key].join(",");
+      // }
 
       return key + "=" + settings[key];
     })

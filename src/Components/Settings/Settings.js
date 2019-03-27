@@ -1,8 +1,44 @@
 import React, { Component } from "react";
 import { updateSearchSettings, removeSearchSettings } from "../../lib/Search";
-import Input from "@material-ui/core/Input";
-import IconButton from "@material-ui/core/IconButton";
+import { withStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import InputBase from "@material-ui/core/InputBase";
+import Button from "@material-ui/core/Button";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import Radio from "@material-ui/core/Radio";
+import Switch from "@material-ui/core/Switch";
 import AddIcon from "@material-ui/icons/Add";
+
+const styles = {
+  root: {
+    background: "black"
+  },
+  input: {
+    color: "white"
+  },
+  ingredientPaper: {
+    "background-color": "#37474f",
+    padding: "2px 4px",
+    display: "flex",
+    alignItems: "center"
+  },
+  ingredientInput: {
+    "margin-left": 8,
+    flex: 1,
+    color: "white"
+  },
+  "ingredient-filter": {
+    "background-color": "#37474f",
+    color: "white"
+  },
+
+  ingredientFilterAdd: {
+    "background-color": "#37474f",
+    padding: 10,
+    color: "white"
+  }
+};
 
 class Settings extends Component {
   constructor(props) {
@@ -55,8 +91,6 @@ class Settings extends Component {
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
 
-    console.log("Name: ", name, value);
-
     this.setState({
       diet: name
     });
@@ -101,7 +135,6 @@ class Settings extends Component {
 
   handleAddIngredient(event) {
     event.preventDefault();
-    console.log("Current Ing: ", this.state.currentIngredient);
 
     const currentIngredient = this.state.currentIngredient;
     this.setState({
@@ -115,24 +148,29 @@ class Settings extends Component {
   }
 
   render() {
+    const { classes } = this.props;
+
     return (
       <div className="settings">
         <div class="Ingredients">
           <h3>Ingredients</h3>
-          <Input
-            id="ingredient-input"
-            placeholder="Add Ingredient To Filter"
-            className="ingredient-input"
-            value={this.state.currentIngredient}
-            onChange={this.handleIngredientChange}
-          />
-          <IconButton
-            aria-label="Add Ingredient"
-            style={{ padding: 10, color: "white" }}
-            onClick={this.handleAddIngredient}
-          >
-            <AddIcon />
-          </IconButton>
+          <Paper elevation={1} className={classes.ingredientPaper}>
+            <InputBase
+              id="ingredient-input"
+              placeholder="Ingredient"
+              className={classes.ingredientInput}
+              value={this.state.currentIngredient}
+              onChange={this.handleIngredientChange}
+            />
+            <Button
+              size="small"
+              aria-label="Add Ingredient"
+              className={classes.ingredientFilterAdd}
+              onClick={this.handleAddIngredient}
+            >
+              <AddIcon size="small" />
+            </Button>
+          </Paper>
           {this.state.ingredients.map(ingredient => (
             <div class="ingredient-filter">
               <span>{ingredient}</span>
@@ -143,7 +181,7 @@ class Settings extends Component {
           <h3>Diet</h3>
 
           <label>
-            <input
+            <Radio
               type="radio"
               name="balanced"
               checked={this.state.diet === "balanced"}
@@ -152,7 +190,7 @@ class Settings extends Component {
             Balanced
           </label>
           <label>
-            <input
+            <Radio
               type="radio"
               name="high-protein"
               checked={this.state.diet === "high-protein"}
@@ -161,7 +199,7 @@ class Settings extends Component {
             High-protein
           </label>
           <label>
-            <input
+            <Radio
               type="radio"
               name="high-fiber"
               checked={this.state.diet === "high-fiber"}
@@ -170,7 +208,7 @@ class Settings extends Component {
             High-fiber
           </label>
           <label>
-            <input
+            <Radio
               type="radio"
               name="low-fat"
               checked={this.state.diet === "low-fat"}
@@ -179,7 +217,7 @@ class Settings extends Component {
             Low-fat
           </label>
           <label>
-            <input
+            <Radio
               type="radio"
               name="low-carb"
               checked={this.state.diet === "low-carb"}
@@ -191,22 +229,24 @@ class Settings extends Component {
         <div class="health">
           <h3>Health</h3>
 
-          {Object.keys(this.healthOptions).map(key => (
-            <label for={key}>
-              <input
-                type="checkbox"
-                name={key}
-                value={key}
-                checked={this.state.health.includes(key)}
-                onChange={this.handleHealthChange}
-              />
-              {this.healthOptions[key]}
-            </label>
-          ))}
+          <List dense={true}>
+            {Object.keys(this.healthOptions).map(key => (
+              <ListItem for={key}>
+                <Switch
+                  name={key}
+                  value={key}
+                  checked={this.state.health.includes(key)}
+                  onChange={this.handleHealthChange}
+                  disableRipple
+                />
+                {this.healthOptions[key]}
+              </ListItem>
+            ))}
+          </List>
         </div>
       </div>
     );
   }
 }
 
-export default Settings;
+export default withStyles(styles)(Settings);

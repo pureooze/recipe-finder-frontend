@@ -37,17 +37,24 @@ class Result extends Component {
 
   render() {
     return (
-      <Card style={{ width: 300 }}>
+      <Card
+        style={{
+          width: 300
+        }}
+      >
         <CardHeader
           title={this.props.result.label}
           subheader={"Servings: " + this.props.result.yield}
+          titleTypographyProps={{
+            noWrap: true
+          }}
         />
         <CardMedia
           image={this.props.result.image}
           title={this.props.result.label}
           style={{ height: 0, paddingTop: "56.25%" }}
         />
-        <CardContent>
+        {/* <CardContent>
           <Typography component="ul">
             {this.props.result.ingredientLines.map((ingredient, index) => {
               if (index <= 4 || this.state.expanded) {
@@ -59,7 +66,7 @@ class Result extends Component {
               }
             })}
           </Typography>
-        </CardContent>
+        </CardContent> */}
         <CardActions disableActionSpacing>
           <IconButton
             onClick={this.handleExpandClick}
@@ -72,7 +79,7 @@ class Result extends Component {
             <Link />
           </IconButton>
         </CardActions>
-        <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+        {/* <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
           <CardContent>
             <Typography paragraph>Method:</Typography>
             <Typography>
@@ -80,7 +87,7 @@ class Result extends Component {
               and set aside for 10 minutes.
             </Typography>
           </CardContent>
-        </Collapse>
+        </Collapse> */}
       </Card>
     );
   }

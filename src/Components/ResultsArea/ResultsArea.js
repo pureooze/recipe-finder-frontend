@@ -7,7 +7,7 @@ class ResultsArea extends Component {
     console.log("Res: ", this.props.results);
     return (
       <div className="Results-Wrapper">
-        {this.props.results.length !== 0 && <Settings className="settings" />}
+        <Settings className="settings" />
         <div className="Results-Area">
           <ul
             style={{
