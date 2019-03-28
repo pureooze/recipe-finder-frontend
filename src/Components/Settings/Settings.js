@@ -152,8 +152,9 @@ class Settings extends Component {
 
     return (
       <div className="settings">
-        <div class="Ingredients">
-          <h3>Ingredients</h3>
+        <h3>Settings</h3>
+        <div class="Ingredients" style={{ paddingRight: "10px" }}>
+          <h4>Ingredients</h4>
           <Paper elevation={1} className={classes.ingredientPaper}>
             <InputBase
               id="ingredient-input"
@@ -178,7 +179,7 @@ class Settings extends Component {
           ))}
         </div>
         <div class="diet">
-          <h3>Diet</h3>
+          <h4>Diet</h4>
 
           <label>
             <Radio
@@ -227,7 +228,7 @@ class Settings extends Component {
           </label>
         </div>
         <div class="health">
-          <h3>Health</h3>
+          <h4>Health</h4>
 
           <List dense={true}>
             {Object.keys(this.healthOptions).map(key => (

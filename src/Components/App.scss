@@ -37,13 +37,22 @@
 }
 
 .Results-Area {
-  display: inline-block;
+  padding-top: 2px;
+  padding-left: 10px;
+  height: 100%;
+  width: 100%;
 }
 
 .Results-Wrapper {
   margin-top: 140px;
   display: flex;
   width: 100%;
+  height: 100%;
+}
+
+.no-results {
+  margin-top: 140px;
+  align-content: center;
 }
 
 @keyframes App-logo-spin {
@@ -67,7 +76,7 @@
 }
 
 .settings {
-  flex-basis: 14em;
+  flex-basis: 13em;
   flex-shrink: 0;
   flex-grow: 0;
   color: white;

@@ -6,7 +6,6 @@ import CardActions from "@material-ui/core/CardActions";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import Chip from "@material-ui/core/Chip";
-import Paper from "@material-ui/core/Paper";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { Link } from "@material-ui/icons";
 
@@ -92,16 +91,24 @@ class Result extends Component {
       //   </Collapse> */}
       // </Card>
 
-      <GridListTile key={this.props.result.image} cols={1}>
+      <GridListTile
+        // style={{ height: "auto" }}
+        cols={1}
+        key={this.props.result.image}
+      >
         <img src={this.props.result.image} alt={this.props.result.label} />
-        {/* <GridListTileBar
+        <GridListTileBar
           title={this.props.result.label}
-          // actionIcon={
-          //   <IconButton>
-          //     <StarBorderIcon className={classes.title} />
-          //   </IconButton>
-          // }
-        /> */}
+          subtitle={<span>Servings: {this.props.result.yield}</span>}
+          actionIcon={
+            <IconButton
+              style={{ color: "white" }}
+              onClick={this.handleLinkClick}
+            >
+              <Link />
+            </IconButton>
+          }
+        />
       </GridListTile>
     );
   }
