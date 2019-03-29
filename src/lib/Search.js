@@ -17,13 +17,13 @@ export function search(searchString) {
 
   console.log(queryString);
 
+  const baseURL =
+    "https://recipe-finder-backend.herokuapp.com/search/recipes?request=";
+
   const url =
     queryString.length === 0
-      ? "http://localhost:8080/search/recipes?request=" + searchString
-      : "http://localhost:8080/search/recipes?request=" +
-        searchString +
-        "&" +
-        queryString;
+      ? baseURL + searchString
+      : baseURL + searchString + "&" + queryString;
   const requestURL = new URL(url);
 
   console.log("R:", requestURL);
