@@ -9,6 +9,7 @@ import ListItem from "@material-ui/core/ListItem";
 import Radio from "@material-ui/core/Radio";
 import Switch from "@material-ui/core/Switch";
 import AddIcon from "@material-ui/icons/Add";
+import blue from "@material-ui/core/colors/blueGrey";
 
 const styles = {
   root: {
@@ -37,7 +38,25 @@ const styles = {
     "background-color": "#37474f",
     padding: 10,
     color: "white"
-  }
+  },
+  switch: {
+    color: blue[600],
+    "&$checked": {
+      color: blue[500]
+    }
+  },
+  checked: {},
+  colorSwitchBase: {
+    color: blue[300],
+    "&$colorChecked": {
+      color: blue[500],
+      "& + $colorBar": {
+        backgroundColor: blue[500]
+      }
+    }
+  },
+  colorBar: {},
+  colorChecked: {}
 };
 
 class Settings extends Component {
@@ -187,6 +206,10 @@ class Settings extends Component {
               name="balanced"
               checked={this.state.diet === "balanced"}
               onChange={this.handleDietChange}
+              classes={{
+                root: classes.switch,
+                checked: classes.checked
+              }}
             />{" "}
             Balanced
           </label>
@@ -196,6 +219,10 @@ class Settings extends Component {
               name="high-protein"
               checked={this.state.diet === "high-protein"}
               onChange={this.handleDietChange}
+              classes={{
+                root: classes.switch,
+                checked: classes.checked
+              }}
             />{" "}
             High-protein
           </label>
@@ -205,6 +232,10 @@ class Settings extends Component {
               name="high-fiber"
               checked={this.state.diet === "high-fiber"}
               onChange={this.handleDietChange}
+              classes={{
+                root: classes.switch,
+                checked: classes.checked
+              }}
             />{" "}
             High-fiber
           </label>
@@ -214,6 +245,10 @@ class Settings extends Component {
               name="low-fat"
               checked={this.state.diet === "low-fat"}
               onChange={this.handleDietChange}
+              classes={{
+                root: classes.switch,
+                checked: classes.checked
+              }}
             />{" "}
             Low-fat
           </label>
@@ -223,6 +258,10 @@ class Settings extends Component {
               name="low-carb"
               checked={this.state.diet === "low-carb"}
               onChange={this.handleDietChange}
+              classes={{
+                root: classes.switch,
+                checked: classes.checked
+              }}
             />{" "}
             Low-carb
           </label>
@@ -238,7 +277,12 @@ class Settings extends Component {
                   value={key}
                   checked={this.state.health.includes(key)}
                   onChange={this.handleHealthChange}
-                  disableRipple
+                  desne={true}
+                  classes={{
+                    switchBase: classes.colorSwitchBase,
+                    checked: classes.colorChecked,
+                    bar: classes.colorBar
+                  }}
                 />
                 {this.healthOptions[key]}
               </ListItem>

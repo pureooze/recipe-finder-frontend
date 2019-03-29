@@ -12,7 +12,8 @@ class App extends Component {
     this.state = {
       results: [],
       smallHeader: false,
-      searchTerm: ""
+      searchTerm: "",
+      isLoading: false
     };
 
     this.handleSearch = this.handleSearch.bind(this);
@@ -40,9 +41,13 @@ class App extends Component {
 
   handleSearch(event) {
     event.preventDefault();
+    this.setState({
+      isLoading: true
+    });
     search(this.state.searchTerm).then(results => {
       this.setState({
-        results
+        results,
+        isLoading: false
       });
     });
   }
@@ -67,6 +72,7 @@ class App extends Component {
           />
         </div>
         <ResultsArea
+          isLoading={this.state.isLoading}
           results={this.state.results}
           updateSearch={this.updateSearch}
         />
