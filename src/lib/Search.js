@@ -1,41 +1,45 @@
-function search(searchString) {
-  //TODO: replace with API call
-  return {
-    matches: [
-      {
-        name: "Chicken thing",
-        img:
-          "https://cdn-image.myrecipes.com/sites/default/files/styles/4_3_horizontal_-_1200x900/public/rosemary-garlic-chicken-quarters-sl.jpg?itok=Sv1U-Ge3",
-        ingredients: ["chicken", "lemon", "garlic"],
-        desc:
-          "This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like."
-      },
-      {
-        name: "Thai Basil Beef",
-        img:
-          "https://www.closetcooking.com/wp-content/uploads/2016/09/ThaiBasilBeef8006722.jpg",
-        ingredients: ["beef", "basil", "lime"],
-        desc:
-          "A quick, easy and tasty Thai style beef with plenty of fresh basil!"
-      },
-      {
-        name: "Thai Peanut Chicken Noodle Soup",
-        img:
-          "https://www.closetcooking.com/wp-content/uploads/2014/01/Thai-Peanut-Chicken-Noodle-Soup-800-0995.jpg",
-        ingredients: ["beef", "basil", "lime"],
-        desc:
-          "A quick, easy and tasty Thai style beef with plenty of fresh basil!"
-      },
-      {
-        name: "Thai Peanut Chicken Noodle Soup",
-        img:
-          "https://www.closetcooking.com/wp-content/uploads/2014/01/Thai-Peanut-Chicken-Noodle-Soup-800-0995.jpg",
-        ingredients: ["beef", "basil", "lime"],
-        desc:
-          "A quick, easy and tasty Thai style beef with plenty of fresh basil!"
-      }
-    ]
-  };
+let settings = {};
+
+export function search(searchString) {
+  const queryString = Object.keys(settings)
+    .map(key => {
+      // if (key === "health" && settings[key].length > 0) {
+      //   for (const v of settings[key]) {
+      //     value += v;
+      //   }
+      // } else if (key === "inventory") {
+      //   value = settings[key].join(",");
+      // }
+
+      return key + "=" + settings[key];
+    })
+    .join("&");
+
+  console.log(queryString);
+
+  const url =
+    queryString.length === 0
+      ? "http://localhost:8080/search/recipes?request=" + searchString
+      : "http://localhost:8080/search/recipes?request=" +
+        searchString +
+        "&" +
+        queryString;
+  const requestURL = new URL(url);
+
+  console.log("R:", requestURL);
+  return fetch(requestURL, {
+    method: "GET"
+  }).then(response => {
+    return response.json();
+  });
+}
+
+export function removeSearchSettings(key) {
+  delete settings[key];
+}
+
+export function updateSearchSettings(updatedSettings) {
+  settings = { ...settings, ...updatedSettings };
 }
 
 export default search;

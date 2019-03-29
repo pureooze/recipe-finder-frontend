@@ -1,0 +1,132 @@
+.App {
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #37474f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(3px + 1vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.Search-bar {
+  background-color: #37474f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: #263238;
+  padding-bottom: 50px;
+  padding-top: 50px;
+  border-bottom-style: solid;
+}
+
+.Results-Area {
+  padding-top: 2px;
+  height: 100%;
+  width: 100%;
+}
+
+.Results-Wrapper {
+  margin-top: 140px;
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.no-results {
+  margin-top: 140px;
+  align-content: center;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.header {
+  width: 100%;
+  height: 10em;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  transition: height 0.3s;
+}
+
+.settings {
+  flex-basis: 218px;
+  flex-shrink: 0;
+  flex-grow: 0;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  background-color: #263238;
+  padding-bottom: 20px;
+  padding-left: 10px;
+}
+
+// .settings div {
+//   border-bottom-color: #37474f;
+//   border-bottom-style: solid;
+//   border-bottom-width: 1px;
+// }
+
+.diet {
+  padding-bottom: 1em;
+}
+
+.diet label {
+  display: block;
+  float: left;
+  padding-right: 3em;
+  white-space: nowrap;
+}
+
+.diet input {
+  vertical-align: middle;
+}
+
+.health label {
+  display: block;
+  float: left;
+  padding-right: 3em;
+  white-space: nowrap;
+}
+.health input {
+  vertical-align: middle;
+}
+
+// .header.smaller {
+//   height: 60px;
+//   display: flex;
+//   align-items: flex-start;
+//   position: fixed;
+//   top: 0px;
+// }
+
+// .header.smaller > header {
+//   font-size: calc(3px + 0.5vmin);
+//   padding-left: 10px;
+//   padding-right: 10px;
+// }
