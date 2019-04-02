@@ -73,7 +73,12 @@ storiesOf("ResultsArea", module)
     return (
       <div className="root">
         <div className="App">
-          <ResultsArea isLoading={false} results={results} updateSearch={updateSearch} />
+          <ResultsArea
+            firstSearch={true}
+            isLoading={false}
+            results={results}
+            updateSearch={updateSearch}
+          />
         </div>
       </div>
     );
@@ -86,7 +91,12 @@ storiesOf("ResultsArea", module)
     return (
       <div className="root">
         <div className="App">
-          <ResultsArea isLoading={false}  results={[]} updateSearch={updateSearch} />
+          <ResultsArea
+            firstSearch={true}
+            isLoading={false}
+            results={[]}
+            updateSearch={updateSearch}
+          />
         </div>
       </div>
     );
@@ -99,7 +109,30 @@ storiesOf("ResultsArea", module)
     return (
       <div className="root">
         <div className="App">
-          <ResultsArea isLoading={true} results={[]} updateSearch={updateSearch} />
+          <ResultsArea
+            firstSearch={true}
+            isLoading={true}
+            results={[]}
+            updateSearch={updateSearch}
+          />
+        </div>
+      </div>
+    );
+  })
+  .add("first search", () => {
+    function updateSearch() {
+      console.log("updated");
+    }
+
+    return (
+      <div className="root">
+        <div className="App">
+          <ResultsArea
+            firstSearch={false}
+            isLoading={false}
+            results={[]}
+            updateSearch={updateSearch}
+          />
         </div>
       </div>
     );

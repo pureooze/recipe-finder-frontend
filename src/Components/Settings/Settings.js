@@ -277,7 +277,7 @@ class Settings extends Component {
                   value={key}
                   checked={this.state.health.includes(key)}
                   onChange={this.handleHealthChange}
-                  desne={true}
+                  dense={true}
                   classes={{
                     switchBase: classes.colorSwitchBase,
                     checked: classes.colorChecked,
