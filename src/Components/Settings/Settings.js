@@ -9,6 +9,11 @@ import ListItem from "@material-ui/core/ListItem";
 import Radio from "@material-ui/core/Radio";
 import Switch from "@material-ui/core/Switch";
 import AddIcon from "@material-ui/icons/Add";
+import Grid from "@material-ui/core/Grid";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteIcon from "@material-ui/icons/Delete";
 import blue from "@material-ui/core/colors/blueGrey";
 
 const styles = {
@@ -65,7 +70,7 @@ class Settings extends Component {
     this.state = {
       diet: "",
       health: [],
-      ingredients: [],
+      ingredients: this.props.ingredients || [],
       currentIngredient: ""
     };
 
@@ -103,6 +108,20 @@ class Settings extends Component {
     this.handleHealthChange = this.handleHealthChange.bind(this);
     this.handleAddIngredient = this.handleAddIngredient.bind(this);
     this.handleIngredientChange = this.handleIngredientChange.bind(this);
+    this.removeIngredient = this.removeIngredient.bind(this);
+  }
+
+  removeIngredient(event) {
+    const { id } = event.currentTarget.dataset;
+    const ingredients = this.state.ingredients;
+
+    console.log(id);
+    this.setState(
+      {
+        ingredients: ingredients.splice(parseInt(id) + 1, 1)
+      },
+      () => console.log(this.state.ingredients)
+    );
   }
 
   handleDietChange(event) {
@@ -191,11 +210,46 @@ class Settings extends Component {
               <AddIcon size="small" />
             </Button>
           </Paper>
-          {this.state.ingredients.map(ingredient => (
-            <div class="ingredient-filter">
-              <span>{ingredient}</span>
-            </div>
-          ))}
+          <Grid item xs={12}>
+            {this.state.ingredients.length > 0 && (
+              <div
+                style={{
+                  backgroundColor: "#37474f",
+                  width: "100%"
+                }}
+              >
+                <List dense={true}>
+                  {this.state.ingredients.map((ingredient, key) => (
+                    // <div class="ingredient-filter">
+                    //   <span>{ingredient}</span>
+                    // </div>
+                    <ListItem
+                      style={{
+                        border: "#263238",
+                        borderStyle: "solid",
+                        borderWidth: "0.5px",
+                        borderBottomWidth: "0px"
+                      }}
+                    >
+                      <ListItemText
+                        style={{ color: "white" }}
+                        primary={ingredient}
+                      />
+                      <ListItemSecondaryAction>
+                        <IconButton
+                          aria-label="Delete"
+                          onClick={this.removeIngredient}
+                          data-id={key}
+                        >
+                          <DeleteIcon />
+                        </IconButton>
+                      </ListItemSecondaryAction>
+                    </ListItem>
+                  ))}
+                </List>
+              </div>
+            )}
+          </Grid>
         </div>
         <div class="diet">
           <h4>Diet</h4>
@@ -277,7 +331,7 @@ class Settings extends Component {
                   value={key}
                   checked={this.state.health.includes(key)}
                   onChange={this.handleHealthChange}
-                  desne={true}
+                  dense={true}
                   classes={{
                     switchBase: classes.colorSwitchBase,
                     checked: classes.colorChecked,
