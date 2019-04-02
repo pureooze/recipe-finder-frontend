@@ -14,6 +14,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
+import Typography from "@material-ui/core/Typography";
 import blue from "@material-ui/core/colors/blueGrey";
 
 const styles = {
@@ -237,13 +238,19 @@ class Settings extends Component {
                     >
                       <ListItemText
                         style={{ color: "white" }}
-                        primary={ingredient}
+                        disableTypography
+                        primary={
+                          <Typography type="body2" style={{ color: "white" }}>
+                            {ingredient}
+                          </Typography>
+                        }
                       />
                       <ListItemSecondaryAction>
                         <IconButton
                           aria-label="Delete"
                           onClick={this.removeIngredient}
                           data-id={key}
+                          style={{ color: "white" }}
                         >
                           <DeleteIcon />
                         </IconButton>
