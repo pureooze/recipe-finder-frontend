@@ -5,6 +5,7 @@ import "../index.css";
 import "../Components/App.scss";
 
 import ResultsArea from "../Components/ResultsArea/ResultsArea";
+import Settings from "../Components/Settings/Settings";
 
 storiesOf("ResultsArea", module)
   .add("with text", () => {
@@ -137,3 +138,17 @@ storiesOf("ResultsArea", module)
       </div>
     );
   });
+
+storiesOf("Settings", module).add("with text", () => {
+  function updateSearch() {
+    console.log("updated");
+  }
+
+  return (
+    <div className="root">
+      <div className="App">
+        <Settings ingredients={["test", "stuff"]} />
+      </div>
+    </div>
+  );
+});
