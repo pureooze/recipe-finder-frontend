@@ -18,7 +18,7 @@ export function search(searchString) {
   console.log(queryString);
 
   const baseURL =
-    "https://cors-anywhere.herokuapp.com/https://recipe-finder-backend.herokuapp.com/search/recipes?request=";
+    "https://recipe-finder-backend.herokuapp.com/search/recipes?request=";
 
   const url =
     queryString.length === 0

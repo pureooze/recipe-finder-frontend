@@ -113,15 +113,19 @@ class Settings extends Component {
 
   removeIngredient(event) {
     const { id } = event.currentTarget.dataset;
-    const ingredients = this.state.ingredients;
+    const ingredients = this.state.ingredients.splice(parseInt(id) + 1, 1);
 
-    console.log(id);
-    this.setState(
-      {
-        ingredients: ingredients.splice(parseInt(id) + 1, 1)
-      },
-      () => console.log(this.state.ingredients)
-    );
+    this.setState({
+      ingredients
+    });
+
+    if (ingredients.length > 0) {
+      updateSearchSettings({
+        inventory: ingredients
+      });
+    } else {
+      removeSearchSettings("inventory");
+    }
   }
 
   handleDietChange(event) {
